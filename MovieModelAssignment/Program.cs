@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MovieModelAssignment
 {
@@ -8,19 +9,11 @@ namespace MovieModelAssignment
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Movie Representaion");
-            //Console.ReadKey();
-            //Console.WriteLine(MyClass.Add(10, 20, 5));
-            //Console.ReadKey();
+            Console.WriteLine("==============================");
 
-            //Console.WriteLine("Give a movie title: ");
-            //string title = Console.ReadLine();
-            //Console.Write("You typed: ");
-            //Console.Write(title);
-            //Console.ReadKey();
-
-
+            //=====Create Movie List=====//
             List<Movie> movies = new List<Movie>();
-
+                        
             Movie firstMovie = new Movie
             {
                 Title = "Home alone",
@@ -45,22 +38,48 @@ namespace MovieModelAssignment
                 Casting = "	Jason Statham, Saffron Burrows, Stephen Campbell Moore"
             };
 
+            Movie fourthMovie = new Movie
+            {
+                Title = "Deadpool 2",
+                Rating = 0,
+                Revenue = 254506035,
+                Casting = "	Ryan Reynolds, Josh Brolin, Morena Baccarin"
+            };
+
+            Movie fifthMovie = new Movie
+            {
+                Title = "Eragon",
+                Rating = 0,
+                Revenue = 75030163,
+                Casting = "	Ed Speleers, Jeremy Irons,	John Malkovich"
+            };
+
+            Movie sixthMovie = new Movie
+            {
+                Title = "The Notebook",
+                Rating = 0,
+                Revenue = 81001787,
+                Casting = "	Ryan Gosling, Rachel McAdams"
+            };
 
             movies.Add(firstMovie);
             movies.Add(secondMovie);
             movies.Add(thirdMovie);
+            movies.Add(fourthMovie);
+            movies.Add(fifthMovie);
+            movies.Add(sixthMovie);
             Console.ReadKey();
 
+            //=====Print Movie List as is=====//
+            Console.WriteLine("Movie List: ");
             foreach (Movie x in movies)
             {
                 Console.WriteLine(x.Title);
             }
-            Console.ReadKey();
-
-
-
-            firstMovie.AddReview("Mediocre", 5);
-            firstMovie.AddReview("Amazing", 9);
+            
+            //=====Add comments and reviews to each movie=====//
+            firstMovie.AddReview("Mediocre", 6);
+            firstMovie.AddReview("Pretty good", 7);
 
             secondMovie.AddReview("Amazing", 10);
             secondMovie.AddReview("Really good", 9);
@@ -68,38 +87,36 @@ namespace MovieModelAssignment
 
             thirdMovie.AddReview("Entertaining", 7);
 
+            fourthMovie.AddReview("Incredible", 10);
+            fourthMovie.AddReview("Loved it", 9);
 
-            Console.WriteLine("The average rating of " + firstMovie.Title + " is " + firstMovie.Rating);
-            Console.WriteLine("The average rating of " + secondMovie.Title + " is " + secondMovie.Rating);
+            fifthMovie.AddReview("Book masacre", 3);
+            fifthMovie.AddReview("Awful", 2);
 
-            //for (int i = 0; i < movies.Count; i++)
-            //{
-            //    // print another list items.
-                
-            //    Console.WriteLine( i + ")" + movies[i] + ".");
-
-            //}
-
+            sixthMovie.AddReview("Beautiful", 9);
+            sixthMovie.AddReview("Cry Me a River", 2);
 
             Console.ReadKey();
+
+            //=====Print average rating for each movie=====//
+            Console.WriteLine("");
+            foreach (Movie x in movies)
+            {
+                Console.WriteLine("The average rating of " + x.Title+ " is: " + x.Rating);
+            }
+            Console.ReadKey();
+
+            //=====Sort and print movie list by average Rating=====//
+            List<Movie> SortedByRating = movies.OrderByDescending(obj => obj.Rating).ToList();
+            Console.WriteLine("");
+            Console.WriteLine("Sorted Movie List by Rating: ");
+            foreach (Movie x in SortedByRating)
+            {
+                Console.WriteLine(x.Title+ ": " + x.Rating);
+            }
+            
+            Console.ReadKey();
         }
-
-        //public static class MyClass
-        //{
-
-        //    // static method with two parameters
-        //    public static long Add(int a, int b)
-        //    {
-        //        return a + b;
-        //    }
-
-        //    // static method with three parameters (method overloading)
-        //    public static long Add(int a, int b, int c)
-        //    {
-        //        return a + b + c;
-        //    }
-
-        //}
 
 
 
