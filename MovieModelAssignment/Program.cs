@@ -10,6 +10,7 @@ namespace MovieModelAssignment
         {
             Console.WriteLine("Welcome to Movie Representaion");
             Console.WriteLine("==============================");
+            Console.WriteLine("");
 
             //=====Create Movie List=====//
             List<Movie> movies = new List<Movie>();
@@ -62,12 +63,48 @@ namespace MovieModelAssignment
                 Casting = "	Ryan Gosling, Rachel McAdams"
             };
 
+            Movie seventhMovie = new Movie
+            {
+                Title = "Ted",
+                Rating = 0,
+                Revenue = 218815487,
+                Casting = "Mark Wahlberg, Mila Kunis, Seth MacFarlane"
+            };
+
+            Movie eighthMovie = new Movie
+            {
+                Title = "Avengers Infinity Wars",
+                Rating = 0,
+                Revenue = 643006211,
+                Casting = "Robert Downey Jr., Chris Pratt, Chris Evans, Scarlett Johansson"
+            };
+
+            Movie ninethMovie = new Movie
+            {
+                Title = "Gringo",
+                Rating = 0,
+                Revenue = 5969853,
+                Casting = "Joel Edgerton, Charlize Theron, David Oyelowo"
+            };
+
+            Movie tenthMovie = new Movie
+            {
+                Title = "Pulp Fiction",
+                Rating = 0,
+                Revenue = 107928762,
+                Casting = "	Samuel L. Jackson, John Travolta, Uma Thurman"
+            };
+
             movies.Add(firstMovie);
             movies.Add(secondMovie);
             movies.Add(thirdMovie);
             movies.Add(fourthMovie);
             movies.Add(fifthMovie);
             movies.Add(sixthMovie);
+            movies.Add(seventhMovie);
+            movies.Add(eighthMovie);
+            movies.Add(ninethMovie);
+            movies.Add(tenthMovie);
             Console.ReadKey();
 
             //=====Print Movie List as is=====//
@@ -96,6 +133,18 @@ namespace MovieModelAssignment
             sixthMovie.AddReview("Beautiful", 9);
             sixthMovie.AddReview("Cry Me a River", 2);
 
+            seventhMovie.AddReview("Hilarious" , 8);
+            seventhMovie.AddReview("Very Funny", 7);
+
+            eighthMovie.AddReview("Best SuperHero movie ever", 10);
+
+            ninethMovie.AddReview("Just ok", 6);
+            ninethMovie.AddReview("Dull", 5);
+
+            tenthMovie.AddReview("Masterpiece", 10);
+            tenthMovie.AddReview("Movie of the cecntury ", 10);
+            tenthMovie.AddReview("Overrated", 6);
+
             Console.ReadKey();
 
             //=====Print average rating for each movie=====//
@@ -107,15 +156,18 @@ namespace MovieModelAssignment
             Console.ReadKey();
 
             //=====Sort and print movie list by average Rating=====//
+            var i = 1;
             List<Movie> SortedByRating = movies.OrderByDescending(obj => obj.Rating).ToList();
             Console.WriteLine("");
             Console.WriteLine("Sorted Movie List by Rating: ");
             foreach (Movie x in SortedByRating)
             {
-                Console.WriteLine(x.Title+ ": " + x.Rating);
+                Console.WriteLine(i + ") " +x.Title+ ": " + x.Rating);
+                i++;
             }
             
             Console.ReadKey();
+            
         }
 
 
@@ -127,6 +179,7 @@ namespace MovieModelAssignment
             public long Revenue { get; set; }
             public string Casting { get; set; }
             public List<Review> reviews = new List<Review>();
+
 
 
             public class Review
@@ -146,6 +199,7 @@ namespace MovieModelAssignment
                 reviews.Add(newReview);
 
                 CalculateAverageRating();
+                
             }
 
 
@@ -160,7 +214,7 @@ namespace MovieModelAssignment
                 if (reviews.Count > 0)
                 {
                     Rating = avg / reviews.Count;
-                }
+                }                
             }
         }
 
